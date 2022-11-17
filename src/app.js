@@ -22,6 +22,9 @@ export const readDatabase = () => {
 		return JSON.parse(file)
 	}catch (err) {
 		if (err.code === "ENOENT") {
+			if (!fs.existsSync("./database/")){
+				fs.mkdirSync("./database/")
+			}
 			const file = '{"products":[]}'
 			try{
 				fs.writeFileSync(filePath, file)
