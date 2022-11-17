@@ -39,9 +39,7 @@ export const readDatabase = () => {
 
 const writeDatabase = (data) => {
 	try {
-		console.log(data)
 		fs.writeFileSync(filePath, JSON.stringify(data))
-		console.log("this didnt error")
 
 	} catch (err) {
 		console.error(err)
@@ -87,9 +85,7 @@ app.put('/products/:stock_number', (req, res) => {
 		return
 	}
 	database.products[index] = reqProduct
-	console.log("database",database)
 	const resp = writeDatabase(database)
-	console.log(resp)
 	if (resp) {
 		res.status(500).send("Unexpected error writing to database")
 		return
